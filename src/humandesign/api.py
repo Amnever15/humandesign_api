@@ -18,6 +18,15 @@ if __version__ == "0.0.0":
 
 app = FastAPI(title="Human Design API", version=__version__)
 
+from fastapi.middleware.cors import CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Include Routers
 app.include_router(general.router)
 app.include_router(transits.router)
